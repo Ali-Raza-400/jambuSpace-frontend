@@ -77,7 +77,7 @@ const OrderDescription = ({ handlePlaceOrderClick, setShowOpenDescModal, showOrd
                 >
                     Cancel
                 </Button>
-                {userType === "customer" &&
+                {userType === "customer" && orderDetail?.status !== 'PAID' &&
 
                     <Button
                         size="medium"

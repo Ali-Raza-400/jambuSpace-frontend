@@ -9,8 +9,10 @@ import CustomNavbar from "../../Common/CustomNavbar/Index";
 import CustomFooter from "../../Shared/Footer/CustomFooter";
 import jobsImage from "../../assets/jobs.jpg";
 import { API_URL } from "../../utils/contants";
+import { useNavigate } from "react-router-dom";
 
 const PostJob = () => {
+  const navigate = useNavigate()
   const user = JSON.parse(localStorage.getItem("authUser"));
   const [formData, setFormData] = useState({
     title: "",
@@ -49,6 +51,7 @@ const PostJob = () => {
         })
         .then(res => {
           toast.success(res.data.message);
+          navigate('/')
           setFormData({
             title: "",
             description: "",
@@ -57,7 +60,7 @@ const PostJob = () => {
             image: null,
           });
         })
-        .catch(() => toast.error("Something went wrong"));
+        .catch(() => toast.error("File too large. Must be less than 200 KB"));
     }
   };
 
