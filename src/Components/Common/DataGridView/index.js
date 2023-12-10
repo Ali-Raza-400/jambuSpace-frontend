@@ -7,8 +7,9 @@ import { STATUS } from "../../utils/contants";
 import { BASE_URL } from "../../utils/contants";
 import { useState } from "react";
 import axios from "axios";
+import { Box } from '@mui/material'
 import OrderDescription from "../orderDescription";
-const currentUser = JSON.parse(localStorage.getItem("authUser"));
+const currentUser = localStorage.getItem("userType");
 const isSeller = localStorage.getItem("userType") === "seller" ? true : false;
 const Icons = {
   PLACED: (
@@ -23,14 +24,14 @@ const Icons = {
       >
         APPROVE
       </Button>
+
       <Button
         variant="outlined"
         color="error"
         endIcon={<ImCancelCircle color="red" />}
       >
         CANCEL
-      </Button>
-    </>
+      </Button></>
   ),
   COMPLETED: (
     <>
@@ -101,25 +102,36 @@ const columns = [
       switch (params.row.status) {
         case STATUS.PLACED:
           return (
-            <>
-              <Button
-                variant="outlined"
-                color="success"
-                endIcon={<BsCheckCircle color="green" />}
-                style={{
-                  marginRight: "15px",
-                }}
-              >
-                APPROVE
-              </Button>
-              <Button
-                variant="outlined"
-                color="error"
-                endIcon={<ImCancelCircle color="red" />}
-              >
-                CANCEL
-              </Button>
-            </>
+            <Box>
+              {
+                isSeller ? <Button
+                  variant="outlined"
+                  color="success"
+                  style={{
+                    marginRight: "15px",
+                  }}
+                >
+                  View Order
+                </Button> : <><Button
+                  variant="outlined"
+                  color="success"
+                  endIcon={<BsCheckCircle color="green" />}
+                  style={{
+                    marginRight: "15px",
+                  }}
+                >
+                  APPROVE
+                </Button>
+                  <Button
+                    variant="outlined"
+                    color="error"
+                    endIcon={<ImCancelCircle color="red" />}
+                  >
+                    CANCEL
+                  </Button></>
+              }
+
+            </Box>
           );
         case STATUS.COMPLETED:
           return (
@@ -195,7 +207,7 @@ const DataGridView = ({ rows }) => {
         onRowClick={(param) => handlePlaceOrderClick(param.row)}
 
       />
-      <OrderDescription handlePlaceOrderClick={handlePlaceOrderClick} setShowOpenDescModal={setShowOpenDescModal} showOrderDescModal={showOrderDescModal} handleCloseOrderDetail={handleCloseOrderDetail} orderID={orderID}/>
+      <OrderDescription handlePlaceOrderClick={handlePlaceOrderClick} setShowOpenDescModal={setShowOpenDescModal} showOrderDescModal={showOrderDescModal} handleCloseOrderDetail={handleCloseOrderDetail} orderID={orderID} />
     </>
   );
 };

@@ -171,7 +171,7 @@ const ViewGig = () => {
           )}
           <TextField
             margin="dense"
-            label="Duration"
+            label="Order Completion Date"
             type={state.date}
             fullWidth
             variant="standard"
