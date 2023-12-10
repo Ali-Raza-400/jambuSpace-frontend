@@ -26,6 +26,7 @@ import Success from "./Components/Pages/PaymentStatus/Success";
 import Cancel from "./Components/Pages/PaymentStatus/Cancel";
 import "./App.scss";
 import axios from 'axios'
+import AdminDashboard from "./Components/Pages/admin/adminDashboard";
 function App() {
   // axios.defaults.withCredentials = true;
   return (
@@ -59,6 +60,7 @@ function App() {
           <Route path="/pages/orders" element={<Orders />} />
           <Route path="/pages/place-order" element={<PlaceOrder />} />
           <Route path="/pages/dashboard" element={<DashboardPage />} />
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </Router>

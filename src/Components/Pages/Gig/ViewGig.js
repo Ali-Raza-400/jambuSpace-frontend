@@ -142,10 +142,12 @@ const ViewGig = () => {
         });
     }
   };
+  const UserType = localStorage.getItem("userType")
+  console.log("UserType", UserType);
   return (
     <div>
       <Navbar />
-      <Dialog open={state.dialog}> 
+      <Dialog open={state.dialog}>
         <DialogTitle>Order Details</DialogTitle>
         <DialogContent>
           <DialogContentText>
@@ -281,13 +283,15 @@ const ViewGig = () => {
                   padding: "8px 16px 16px 16px",
                 }}
               >
-                <Button
-                  size="medium"
-                  variant="outlined"
-                  onClick={() => dispatch({ type: "DIALOG", payload: true })}
-                >
-                  Buy This Gig
-                </Button>
+                {UserType !== "seller" &&
+                  <Button
+                    size="medium"
+                    variant="outlined"
+                    onClick={() => dispatch({ type: "DIALOG", payload: true })}
+                  >
+                    Buy This Gig
+                  </Button>
+                }
                 <Button
                   size="medium"
                   variant="outlined"
