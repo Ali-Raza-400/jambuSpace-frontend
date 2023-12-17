@@ -65,7 +65,7 @@ const JobsListing = () => {
                     {loading ? (
                         <CircularProgress />
                     ) : applicants.length === 0 ? (
-                        <Typography variant="body1">No applicants found for this job.</Typography>
+                        <Typography sx={{m:5}} variant="h5">No applicant found for this job.</Typography>
                     ) : (
                         applicants.map((applicant) => (
                             <Grid item key={applicant._id} xs={12} sm={6} md={4}>

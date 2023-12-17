@@ -66,7 +66,7 @@ const JobsPage = () => {
           </Col>
         </Row>
 
-        <Row className="justify-content-start my-4">
+        <Row className="justify-content-start my-4" >
           {jobsLoading ? (
             <SpinnerRoundFilled
               size={80}
