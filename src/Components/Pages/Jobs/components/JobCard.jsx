@@ -4,6 +4,8 @@ import { Row, Col } from "react-bootstrap";
 import moment from "moment";
 import { AiFillStar, AiOutlineClockCircle } from "react-icons/ai";
 import { BASE_URL } from "../../../utils/contants";
+import { Box } from "@mui/material";
+import ApplyJobForm from "./applyJobForm";
 
 const JobCard = ({ job }) => {
   const navigate = useNavigate();
@@ -11,9 +13,17 @@ const JobCard = ({ job }) => {
     Math.abs(new Date() - new Date(job.createdAt)) / (1000 * 60 * 60 * 24);
   const label =
     addedDaysBefore < 5 ? "New" : job.customer.rating === 5 ? "Popular" : "";
+  const [open, setOpen] = React.useState(false);
 
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
-    <Col key={job._id} xs={6} sm={6} md={4} lg={3} className="my-2">
+    <Col key={job._id} xs={6} sm={6} md={4} lg={3} className="my-2" onClick={handleClickOpen}>
       <div className="job-card mx-2 border overflow-hidden">
         <div className="card-header-top position-relative">
           <img className="job-image" src={BASE_URL + job?.image?.url} alt="" />
@@ -74,6 +84,7 @@ const JobCard = ({ job }) => {
           </Col>
         </Row>
       </div>
+      <ApplyJobForm job={job._id} setOpen={setOpen} open={open} handleClickOpen={handleClickOpen} handleClose={handleClose} />
     </Col>
   );
 };

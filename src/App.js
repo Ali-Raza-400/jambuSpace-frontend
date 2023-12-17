@@ -27,6 +27,7 @@ import Cancel from "./Components/Pages/PaymentStatus/Cancel";
 import "./App.scss";
 import axios from 'axios'
 import AdminDashboard from "./Components/Pages/admin/adminDashboard";
+import JobsListing from "./Components/Pages/jobsListing/JobsListing";
 function App() {
   // axios.defaults.withCredentials = true;
   return (
@@ -61,6 +62,7 @@ function App() {
           <Route path="/pages/place-order" element={<PlaceOrder />} />
           <Route path="/pages/dashboard" element={<DashboardPage />} />
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          <Route path="/jobs/listing/:id" element={<JobsListing />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </Router>

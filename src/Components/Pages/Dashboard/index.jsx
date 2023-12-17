@@ -11,6 +11,7 @@ import Posting from "./components/Posting";
 import "../../Stylesheet/Dashboard/dashboard.scss";
 import { API_URL } from "../../utils/contants";
 import { Button, CardMedia, CardContent, CardActions, Card, Typography, Grid, Chip, Stack, Tooltip } from "@mui/material"
+import { Link } from 'react-router-dom'
 import { BASE_URL } from "../../utils/contants"
 
 const DashboardPage = () => {
@@ -30,7 +31,7 @@ const DashboardPage = () => {
       .then(res => setPostings(res.data))
       .then(err => console.log(err));
   }, []);
-
+  console.log("postings", postings);
   return (
     <>
       <CustomNavbar />
@@ -72,12 +73,14 @@ const DashboardPage = () => {
               </div>
 
               <div className="card-body p-3">
-                <Grid container spacing={3}>
+
+                <Grid container spacing={3} >
                   {
                     postings.length > 0 ? (
                       showAllPostings ? (
                         postings.map((item, idx) => {
                           return (
+
                             <Grid item xs={12} md={4} >
                               <Card key={idx} sx={{ maxWidth: 345 }}>
                                 <CardMedia
@@ -100,10 +103,12 @@ const DashboardPage = () => {
                                     Budget: {item.budget}$
                                   </Typography>
                                   <Stack direction="row" marginTop={2}  >
-                                    <Chip label={item?.status} color={item?.status === "pending" ? "info" : "error"} />
+                                    <Link to={`/jobs/listing/${item._id}`}>
+                                      <Chip  sx={{cursor:'pointer'}} label={'View Applicants'} color={item?.status === "pending" ? "info" : "error"} /></Link>
                                   </Stack>
                                 </CardContent>
                               </Card>
+
                             </Grid>
                           )
                         })
@@ -130,7 +135,9 @@ const DashboardPage = () => {
                                 Budget: {postings[postings.length - 1]?.budget}$
                               </Typography>
                               <Stack direction="row" marginTop={2}  >
-                                <Chip label={postings[postings.length - 1]?.status} color={postings[postings.length - 1]?.status === "pending" ? "info" : "error"} />
+                              <Link to={`/jobs/listing/${postings[postings.length - 1]?._id}`} >
+                              <Chip sx={{cursor:'pointer'}} label={"View Applicants"} color={postings[postings.length - 1]?.status === "pending" ? "info" : "error"} />
+                              </Link>  
                               </Stack>
                             </CardContent>
                           </Card>
