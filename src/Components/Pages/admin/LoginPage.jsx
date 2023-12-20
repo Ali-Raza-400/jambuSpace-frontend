@@ -8,6 +8,7 @@ import { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import { ADMIN_API_URL } from '../../utils/contants'
 
 export default function AdminLoginPage() {
   const navigate = useNavigate();
