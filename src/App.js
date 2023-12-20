@@ -28,6 +28,7 @@ import "./App.scss";
 import axios from 'axios'
 import AdminDashboard from "./Components/Pages/admin/adminDashboard";
 import JobsListing from "./Components/Pages/jobsListing/JobsListing";
+import AdminLoginPage from "./Components/Pages/admin/LoginPage";
 function App() {
   // axios.defaults.withCredentials = true;
   return (
@@ -63,6 +64,7 @@ function App() {
           <Route path="/pages/dashboard" element={<DashboardPage />} />
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
           <Route path="/jobs/listing/:id" element={<JobsListing />} />
+          <Route path="/admin/login" element={<AdminLoginPage />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </Router>

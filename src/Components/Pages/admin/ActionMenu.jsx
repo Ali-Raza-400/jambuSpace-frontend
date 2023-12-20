@@ -14,6 +14,14 @@ const Transition = forwardRef(function Transition(props, ref) {
 export default function ActionMenu ({ row, setLoading }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const [open, setOpen] =useState(false);
+  const [formData, setFormData] = useState({
+    fullName: row?.fullName,
+    username: row?.username,
+    email: row?.email,
+    phone: row?.phone,
+    company: row?.company,
+  });
+
 
   const handleClickOpenEditModal = () => {
     setOpen(true);
@@ -21,6 +29,13 @@ export default function ActionMenu ({ row, setLoading }) {
   };
 
   const handleClose = () => {
+    setFormData({
+      fullName: row?.fullName,
+      username: row?.username,
+      email: row?.email,
+      phone: row?.phone,
+      company: row?.company,
+    });
     setOpen(false);
   };
   const handleMenuOpen = (event) => {
@@ -30,14 +45,6 @@ export default function ActionMenu ({ row, setLoading }) {
   const handleMenuClose = () => {
     setAnchorEl(null);
   };
-
-  const [formData, setFormData] = useState({
-    fullName: "",
-    username: "",
-    email: "",
-    phone: "",
-    company: "",
-  });
 
   const handleChange = (e) => {
     setFormData((prevState) => ({
@@ -62,12 +69,9 @@ export default function ActionMenu ({ row, setLoading }) {
       toast('Delete Failed')
     }
   };
-
+console.log('🔥🍊🍉 row',row);
   const handleSaveEditModal = async() => {
    try {
-    if(!formData.company && !formData.email && !formData.fullName && !formData.phone && !formData.username ){
-      return toast('Please fill at least one field')
-    }
     let dataToSend;
     if(formData.company){
       dataToSend = {
@@ -120,6 +124,7 @@ export default function ActionMenu ({ row, setLoading }) {
       });
     }
     toast(response.data)
+    handleClose()
    } catch (error) {
     toast('Edit Failed')
    }
@@ -194,7 +199,9 @@ export default function ActionMenu ({ row, setLoading }) {
                 />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Disagree</Button>
+          <Button onClick={()=>{
+            handleClose()
+          }}>Disagree</Button>
           <Button onClick={handleSaveEditModal}>Save</Button>
         </DialogActions>
       </Dialog>

@@ -158,6 +158,7 @@ const SignUpPage = () => {
                 />
 
                 <Select
+                  showSearch
                   placeholder="Select Country"
                   className="w-100 color-grey py-2 my-2 d-flex text-start"
                   onChange={(selected) =>
@@ -165,6 +166,9 @@ const SignUpPage = () => {
                       ...prevState,
                       country: selected,
                     }))
+                  }
+                  filterOption={(input, option) =>
+                    option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                   }
                 >
                   {countries.map((item) => (
