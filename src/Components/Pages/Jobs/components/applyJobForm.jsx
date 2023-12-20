@@ -91,6 +91,7 @@ const ApplyJobForm = ({ setOpen, open, job ,handleClose}) => {
         }}
       >
         <DialogContent>
+          <Typography variant='h4' my={2} textAlign={'center'}>Job Application Form</Typography>
           <form onSubmit={handleSubmit(onSubmit)}>
             <Stack spacing={2.5} alignItems="flex-end">
               <>

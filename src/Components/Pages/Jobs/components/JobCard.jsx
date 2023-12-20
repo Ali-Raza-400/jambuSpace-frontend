@@ -23,6 +23,7 @@ const JobCard = ({ job }) => {
     setOpen(false);
   };
   return (
+    <>
     <Col style={{cursor:'pointer'}}  key={job._id} xs={6} sm={6} md={4} lg={3} className="my-2" onClick={handleClickOpen}>
       <div className="job-card mx-2 border overflow-hidden">
         <div className="card-header-top position-relative">
@@ -84,8 +85,9 @@ const JobCard = ({ job }) => {
           </Col>
         </Row>
       </div>
-      <ApplyJobForm job={job._id} setOpen={setOpen} open={open} handleClickOpen={handleClickOpen} handleClose={handleClose} />
     </Col>
+      <ApplyJobForm job={job._id} setOpen={setOpen} open={open} handleClickOpen={handleClickOpen} handleClose={handleClose} />
+      </>
   );
 };
 
